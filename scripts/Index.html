@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="us">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>Eclypse Dashboard</title>
+    
+    <link rel="stylesheet" href="App.css">
+    
+    <link rel="stylesheet" href="jq-ui/jquery-ui.theme.css">
+    <link rel="stylesheet" href="jq-ui/jquery-ui.css">
+    <script src="jq-ui/external/jquery/jquery.js"></script>
+    <script src="jq-ui/jquery-ui.js"></script>
+
+    <script data-main="App.js" src="require.js"></script>
+    
+    <script>
+      $(function(){
+        
+                
+        $(".nav").controlgroup({
+          classes:{
+            "ui-controlgroup":"highlight"
+          }
+        });
+      
+        var navTree = $("#tree").dialog({
+          autoOpen: true,
+            show: {
+              effect: "slide",
+              duration: 1000
+            },
+            hide: {
+              effect: "slide",
+              duration: 1000
+            },
+            height: 885,
+            position: {
+              my: "left top",
+              at: "left top",
+              of: "#home-page"
+            }
+          });
+        
+        $("#sys").click(function(){
+          navTree.dialog("open");
+        }); 
+        
+        var mainContent = $("#content").dialog({
+          autoOpen: true,
+          show: {
+            effect: "blind",
+            duration: 1000
+          },
+          hide: {
+            effect: "puff",
+            duration: 1000
+          },
+          position: {
+            my: "center top",
+            at: "right top",
+            of: "#main-container"
+          },
+          height: 885,
+          width: 1570
+        });
+        
+        $("#sys").click(function(){
+          mainContent.dialog("open");
+        });
+        
+        var networkView = $("#netScan").dialog({
+          autoOpen: false,
+          show: {
+            effect: "fold",
+            duration: 1000
+          },
+          hide: {
+            effect: "drop",
+            duration: 1000
+          },
+          height: 700,
+          width: 1200
+        });
+        
+        $("#net").click(function(){
+          networkView.dialog("open");
+        });
+      });
+    </script>
+  </head>
+  
+  <body>
+    <header>
+      <div class="nav">
+        <button id="sys">Systems</button>
+        <button id="net">Network</button>
+      </div>
+    </header>
+    <div class="page" id="home-page">
+      <div id="tree" title="Navigation Tree"></div>
+      <div id="main-container">
+        <div id="content" title="Content View"></div> 
+        <div id="netScan" title="Network Scan"></div>
+      </div>
+         
+    </div>
+
+    <footer></footer>
+  </body>
+</html>
